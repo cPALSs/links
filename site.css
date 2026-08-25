@@ -109,6 +109,8 @@ a:hover {
   object-fit: cover;
   display: block;
   background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.04);
 }
 
 .profile-avatar--initial {
