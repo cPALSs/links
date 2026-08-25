@@ -23,6 +23,15 @@
     return post.igThumb || post.thumb || "";
   }
 
+  function formatPostDate(value) {
+    if (!value) return "";
+    const parts = String(value).slice(0, 10).split("-");
+    if (parts.length !== 3) return "";
+    const date = new Date(Number(parts[0]), Number(parts[1]) - 1, Number(parts[2]));
+    if (Number.isNaN(date.getTime())) return "";
+    return date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+  }
+
   function profileImage(account) {
     return account.profileImage || "";
   }
@@ -47,6 +56,7 @@
         const dest = post.destinationUrl;
         const thumb = postThumb(post);
         const label = [post.title, post.subtitle].filter(Boolean).join(" — ");
+        const dateLabel = formatPostDate(post.publishedAt);
         return `
         <a
           class="ig-tile"
@@ -56,6 +66,7 @@
           title="${escapeHtml(label)}"
         >
           <img src="${escapeHtml(thumb)}" alt="" loading="lazy" width="319" height="425" />
+          ${dateLabel ? `<span class="ig-tile-date">${escapeHtml(dateLabel)}</span>` : ""}
           <span class="ig-tile-badge">${CLIP_BADGE_SVG}</span>
         </a>`;
       })
