@@ -4,29 +4,15 @@
       "username": "lunarnewyeartet",
       "displayName": "Lunar New Year Tết",
       "handle": "@lunarnewyeartet",
-      "category": "Festival",
       "profileUrl": "https://www.instagram.com/lunarnewyeartet/",
-      "profileImage": "/assets/profiles/lunarnewyeartet.jpg",
-      "bio": "February 13–14, 2027 @ Elk Grove Park, Elk Grove, CA",
-      "stats": { "posts": 189, "followers": 1377, "following": 254 },
-      "evergreen": [
-        { "label": "Festival home", "url": "https://eglny.com" },
-        { "label": "Volunteer", "url": "https://eglny.com/team/" },
-        { "label": "LNY Season calendar", "url": "https://eglny.com/resources/season/" }
-      ]
+      "profileImage": "/assets/profiles/lunarnewyeartet.jpg"
     },
     "cpalss": {
       "username": "cpalss.uplifting",
       "displayName": "Community Partners Advocate of Little Saigon Sacramento",
       "handle": "@cpalss.uplifting",
       "profileUrl": "https://www.instagram.com/cpalss.uplifting/",
-      "profileImage": "/assets/profiles/cpalss.jpg",
-      "bio": "Engaging in community development and enrichment for local underserved communities.",
-      "stats": { "posts": 51, "followers": 79, "following": 57 },
-      "evergreen": [
-        { "label": "cpalss.com", "url": "https://www.cpalss.com/" },
-        { "label": "Elk Grove Lunar New Year", "url": "https://eglny.com" }
-      ]
+      "profileImage": "/assets/profiles/cpalss.jpg"
     }
   },
   "posts": [

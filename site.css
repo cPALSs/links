@@ -122,95 +122,29 @@ a:hover {
 .profile-summary {
   flex: 1;
   min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.2rem;
 }
 
-.profile-username {
+.profile-handle {
   margin: 0;
   font-size: 1.25rem;
-  font-weight: 300;
-  line-height: 1.2;
-}
-
-.profile-username--desktop {
-  display: none;
-}
-
-.profile-username--mobile {
-  margin-bottom: 0.65rem;
-}
-
-.profile-stats {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  gap: 1.25rem;
-  flex-wrap: wrap;
-}
-
-.profile-stats li {
-  font-size: 1rem;
-}
-
-.profile-stat-count {
   font-weight: 600;
+  line-height: 1.2;
+  color: var(--text);
+  text-decoration: none;
 }
 
-.profile-body {
-  margin-top: 0.85rem;
+.profile-handle:hover {
+  text-decoration: underline;
 }
 
 .profile-display-name {
-  margin: 0 0 0.15rem;
-  font-weight: 600;
-}
-
-.profile-category {
-  margin: 0 0 0.35rem;
-  color: var(--muted);
-  font-size: 0.92rem;
-}
-
-.profile-bio {
-  margin: 0 0 0.5rem;
-  white-space: pre-line;
-}
-
-.profile-hint {
-  margin: 0 0 0.65rem;
-  color: var(--muted);
-  font-size: 0.92rem;
-}
-
-.profile-links {
-  display: flex;
-  flex-direction: column;
-  gap: 0.45rem;
-  margin-bottom: 0.25rem;
-}
-
-.profile-link-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.35rem;
-  padding: 0.5rem 0.75rem;
-  border-radius: 8px;
-  background: var(--surface);
-  border: 1px solid var(--border);
+  margin: 0;
+  font-weight: 400;
   color: var(--text);
-  font-weight: 600;
-  font-size: 0.9rem;
-  text-decoration: none;
-}
-
-.profile-link-btn:hover {
-  background: var(--surface-hover);
-  text-decoration: none;
-}
-
-.profile-link-icon {
-  font-size: 0.8rem;
 }
 
 .grid-section {
@@ -384,25 +318,8 @@ a:hover {
   }
 
   .profile-header {
-    align-items: flex-start;
+    align-items: center;
     gap: 1.875rem;
-  }
-
-  .profile-summary {
-    padding-top: 0.65rem;
-  }
-
-  .profile-username--desktop {
-    display: block;
-    margin-bottom: 1.25rem;
-  }
-
-  .profile-username--mobile {
-    display: none;
-  }
-
-  .profile-stats {
-    gap: 2.5rem;
   }
 }
 

@@ -31,43 +31,10 @@
     return account.username || String(account.handle || "").replace(/^@/, "");
   }
 
-  function formatCount(value) {
-    if (value == null || value === "") return "0";
-    return Number(value).toLocaleString("en-US");
-  }
-
-  function profileInitial(account) {
-    const label = account.displayName || account.label || username(account);
-    return String(label).trim().charAt(0).toUpperCase() || "?";
-  }
-
   async function loadData() {
     const res = await fetch(DATA_URL);
     if (!res.ok) throw new Error(`Failed to load ${DATA_URL}`);
     return res.json();
-  }
-
-  function renderStats(stats) {
-    if (!stats) return "";
-    return `
-      <ul class="profile-stats" aria-label="Profile statistics">
-        <li><span class="profile-stat-count">${formatCount(stats.posts)}</span> posts</li>
-        <li><span class="profile-stat-count">${formatCount(stats.followers)}</span> followers</li>
-        <li><span class="profile-stat-count">${formatCount(stats.following)}</span> following</li>
-      </ul>`;
-  }
-
-  function renderEvergreen(items) {
-    if (!items?.length) return "";
-    return `
-      <div class="profile-links">
-        ${items
-          .map(
-            (item) =>
-              `<a class="profile-link-btn" href="${escapeHtml(item.url)}" rel="noopener noreferrer"><span class="profile-link-icon" aria-hidden="true">🔗</span>${escapeHtml(item.label)}</a>`
-          )
-          .join("")}
-      </div>`;
   }
 
   function renderGrid(posts) {
@@ -115,11 +82,12 @@
 
     const user = username(account);
     const displayName = account.displayName || account.label || user;
+    const handle = account.handle || `@${user}`;
 
-    document.title = `${user} (@${user}) • Instagram links`;
+    document.title = `${displayName} (${handle})`;
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) {
-      metaDesc.content = `Find the Instagram post you saw on @${user} and open its link.`;
+      metaDesc.content = `Find the Instagram post you saw on ${handle} and open its link.`;
     }
 
     const main = document.getElementById("main");
@@ -130,17 +98,9 @@
             ${renderAvatar(account)}
           </a>
           <div class="profile-summary">
-            <h1 class="profile-username profile-username--desktop">${escapeHtml(user)}</h1>
-            ${renderStats(account.stats)}
+            <a class="profile-handle" href="${escapeHtml(account.profileUrl)}" rel="noopener noreferrer">${escapeHtml(handle)}</a>
+            <p class="profile-display-name">${escapeHtml(displayName)}</p>
           </div>
-        </div>
-        <div class="profile-body">
-          <h1 class="profile-username profile-username--mobile">${escapeHtml(user)}</h1>
-          <p class="profile-display-name">${escapeHtml(displayName)}</p>
-          ${account.category ? `<p class="profile-category">${escapeHtml(account.category)}</p>` : ""}
-          ${account.bio ? `<p class="profile-bio">${escapeHtml(account.bio)}</p>` : ""}
-          <p class="profile-hint">Tap the post you saw on Instagram to open its link.</p>
-          ${renderEvergreen(account.evergreen)}
         </div>
       </section>
       <section class="grid-section" aria-label="Instagram posts with links">
