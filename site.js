@@ -32,6 +32,16 @@
     return date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
   }
 
+  function formatDestinationLabel(url) {
+    if (!url) return "";
+    try {
+      const host = new URL(url).hostname.replace(/^www\./i, "");
+      return host ? `-> ${host}` : "";
+    } catch {
+      return "";
+    }
+  }
+
   function profileImage(account) {
     return account.profileImage || "";
   }
@@ -57,6 +67,7 @@
         const thumb = postThumb(post);
         const label = [post.title, post.subtitle].filter(Boolean).join(" — ");
         const dateLabel = formatPostDate(post.publishedAt);
+        const destLabel = formatDestinationLabel(dest);
         return `
         <a
           class="ig-tile"
@@ -67,6 +78,7 @@
         >
           <img src="${escapeHtml(thumb)}" alt="" loading="lazy" width="319" height="425" />
           ${dateLabel ? `<span class="ig-tile-date">${escapeHtml(dateLabel)}</span>` : ""}
+          ${destLabel ? `<span class="ig-tile-destination">${escapeHtml(destLabel)}</span>` : ""}
           <span class="ig-tile-badge">${CLIP_BADGE_SVG}</span>
         </a>`;
       })
