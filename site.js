@@ -36,7 +36,7 @@
     if (!url) return "";
     try {
       const host = new URL(url).hostname.replace(/^www\./i, "");
-      return host ? `-> ${host}` : "";
+      return host ? `→ ${host}` : "";
     } catch {
       return "";
     }
