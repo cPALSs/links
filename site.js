@@ -1,7 +1,9 @@
 (() => {
   const DATA_URL = "/data/ig-links.json";
 
-  const LINK_BADGE_SVG = `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.726 3.714a1.8 1.8 0 0 1 2.544 0l3.816 3.816a1.8 1.8 0 0 1 0 2.544l-8.64 8.64A4.5 4.5 0 0 1 3.6 17.1V13.5a1.8 1.8 0 0 1 .527-1.273l5.599-5.513ZM5.4 13.5v3.6a2.7 2.7 0 0 0 2.7 2.7h3.6l.9-.9H8.1a1.8 1.8 0 0 1-1.8-1.8v-3.6l-.9.9Zm12.15-9.45 1.05 1.05a1.8 1.8 0 0 1 0 2.544l-1.89 1.89 1.273 1.273 1.89-1.89a3.6 3.6 0 0 0 0-5.088l-1.05-1.05a3.6 3.6 0 0 0-5.088 0l-1.89 1.89 1.273 1.273 1.89-1.89a1.8 1.8 0 0 1 2.544 0Z"/></svg>`;
+  const CLIP_BADGE_SVG = `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.5 5.5 17.5 12 6.5 18.5V5.5Z"/></svg>`;
+
+  const GRID_TAB_SVG = `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><title>Posts</title><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>`;
 
   function escapeHtml(str) {
     return String(str)
@@ -21,15 +23,38 @@
     return post.igThumb || post.thumb || "";
   }
 
-  function profileInitial(label) {
-    const trimmed = String(label || "?").trim();
-    return trimmed.charAt(0).toUpperCase();
+  function profileImage(account) {
+    return account.profileImage || "";
+  }
+
+  function username(account) {
+    return account.username || String(account.handle || "").replace(/^@/, "");
+  }
+
+  function formatCount(value) {
+    if (value == null || value === "") return "0";
+    return Number(value).toLocaleString("en-US");
+  }
+
+  function profileInitial(account) {
+    const label = account.displayName || account.label || username(account);
+    return String(label).trim().charAt(0).toUpperCase() || "?";
   }
 
   async function loadData() {
     const res = await fetch(DATA_URL);
     if (!res.ok) throw new Error(`Failed to load ${DATA_URL}`);
     return res.json();
+  }
+
+  function renderStats(stats) {
+    if (!stats) return "";
+    return `
+      <ul class="profile-stats" aria-label="Profile statistics">
+        <li><span class="profile-stat-count">${formatCount(stats.posts)}</span> posts</li>
+        <li><span class="profile-stat-count">${formatCount(stats.followers)}</span> followers</li>
+        <li><span class="profile-stat-count">${formatCount(stats.following)}</span> following</li>
+      </ul>`;
   }
 
   function renderEvergreen(items) {
@@ -39,7 +64,7 @@
         ${items
           .map(
             (item) =>
-              `<a class="profile-link-btn" href="${escapeHtml(item.url)}" rel="noopener noreferrer">${escapeHtml(item.label)}</a>`
+              `<a class="profile-link-btn" href="${escapeHtml(item.url)}" rel="noopener noreferrer"><span class="profile-link-icon" aria-hidden="true">🔗</span>${escapeHtml(item.label)}</a>`
           )
           .join("")}
       </div>`;
@@ -47,7 +72,7 @@
 
   function renderGrid(posts) {
     if (!posts.length) {
-      return `<div class="ig-grid"><p class="grid-empty">Posts with extra links will show up here as a grid — same look as the Instagram profile.</p></div>`;
+      return `<div class="ig-grid"><p class="grid-empty">Posts with extra links will show up here.</p></div>`;
     }
 
     const tiles = posts
@@ -64,12 +89,20 @@
           title="${escapeHtml(label)}"
         >
           <img src="${escapeHtml(thumb)}" alt="" loading="lazy" width="319" height="425" />
-          <span class="ig-tile-badge">${LINK_BADGE_SVG}</span>
+          <span class="ig-tile-badge">${CLIP_BADGE_SVG}</span>
         </a>`;
       })
       .join("");
 
     return `<div class="ig-grid">${tiles}</div>`;
+  }
+
+  function renderAvatar(account) {
+    const src = profileImage(account);
+    if (src) {
+      return `<img class="profile-avatar" src="${escapeHtml(src)}" alt="" width="150" height="150" />`;
+    }
+    return `<div class="profile-avatar profile-avatar--initial" aria-hidden="true">${escapeHtml(profileInitial(account))}</div>`;
   }
 
   function renderAccountPage(data, accountId) {
@@ -80,37 +113,39 @@
       .filter((p) => p.account === accountId && p.destinationUrl)
       .sort((a, b) => String(b.publishedAt).localeCompare(String(a.publishedAt)));
 
-    const avatarThumb = posts.length ? postThumb(posts[0]) : "";
+    const user = username(account);
+    const displayName = account.displayName || account.label || user;
 
-    document.title = `${account.label} (@${account.handle.replace(/^@/, "")})`;
+    document.title = `${user} (@${user}) • Instagram links`;
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) {
-      metaDesc.content = `Find the Instagram post you saw on ${account.handle} and open its link.`;
+      metaDesc.content = `Find the Instagram post you saw on @${user} and open its link.`;
     }
-
-    const avatarMarkup = avatarThumb
-      ? `<img class="profile-avatar" src="${escapeHtml(avatarThumb)}" alt="" width="77" height="77" />`
-      : `<div class="profile-avatar profile-avatar--initial" aria-hidden="true">${escapeHtml(profileInitial(account.label))}</div>`;
 
     const main = document.getElementById("main");
     main.innerHTML = `
-      <header class="site-header">
-        <a class="wordmark" href="/">cPALSs Links</a>
-      </header>
       <section class="profile">
-        <div class="profile-top">
-          ${avatarMarkup}
-          <div class="profile-meta">
-            <h1 class="profile-name">${escapeHtml(account.label)}</h1>
-            <a class="profile-handle" href="${escapeHtml(account.profileUrl)}" rel="noopener noreferrer">${escapeHtml(account.handle)}</a>
+        <div class="profile-header">
+          <a class="profile-avatar-link" href="${escapeHtml(account.profileUrl)}" rel="noopener noreferrer">
+            ${renderAvatar(account)}
+          </a>
+          <div class="profile-summary">
+            <h1 class="profile-username profile-username--desktop">${escapeHtml(user)}</h1>
+            ${renderStats(account.stats)}
           </div>
         </div>
-        <p class="profile-bio">Tap the post you saw on Instagram to open its link.</p>
-        ${renderEvergreen(account.evergreen)}
+        <div class="profile-body">
+          <h1 class="profile-username profile-username--mobile">${escapeHtml(user)}</h1>
+          <p class="profile-display-name">${escapeHtml(displayName)}</p>
+          ${account.category ? `<p class="profile-category">${escapeHtml(account.category)}</p>` : ""}
+          ${account.bio ? `<p class="profile-bio">${escapeHtml(account.bio)}</p>` : ""}
+          <p class="profile-hint">Tap the post you saw on Instagram to open its link.</p>
+          ${renderEvergreen(account.evergreen)}
+        </div>
       </section>
       <section class="grid-section" aria-label="Instagram posts with links">
         <div class="grid-tabs">
-          <div class="grid-tab">Posts</div>
+          <div class="grid-tab grid-tab--active" aria-current="page">${GRID_TAB_SVG}</div>
         </div>
         ${renderGrid(posts)}
       </section>
@@ -122,24 +157,24 @@
     const accounts = Object.entries(data.accounts || {});
     const main = document.getElementById("main");
     main.innerHTML = `
-      <header class="site-header">
-        <a class="wordmark" href="/">cPALSs Links</a>
-      </header>
       <section class="hub-page">
         <h1>Instagram link hub</h1>
         <p class="muted">Pick an account. The grid matches Instagram — tap the post you recognize for its link.</p>
         <div class="hub-list">
           ${accounts
-            .map(
-              ([id, acct]) =>
-                `<a class="hub-account" href="/${escapeHtml(id)}/">
-                  <div class="hub-account-avatar">${escapeHtml(profileInitial(acct.label))}</div>
+            .map(([id, acct]) => {
+              const src = profileImage(acct);
+              const avatar = src
+                ? `<img class="hub-account-avatar" src="${escapeHtml(src)}" alt="" width="48" height="48" />`
+                : `<div class="hub-account-avatar">${escapeHtml(profileInitial(acct))}</div>`;
+              return `<a class="hub-account" href="/${escapeHtml(id)}/">
+                  ${avatar}
                   <div class="hub-account-meta">
-                    <strong>${escapeHtml(acct.label)}</strong>
+                    <strong>${escapeHtml(username(acct))}</strong>
                     <span>${escapeHtml(acct.handle)}</span>
                   </div>
-                </a>`
-            )
+                </a>`;
+            })
             .join("")}
         </div>
       </section>

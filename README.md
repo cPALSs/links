@@ -11,6 +11,16 @@ Stable bio URLs for cPALSs and festival Instagram accounts. When a post says “
 
 [`data/ig-links.json`](data/ig-links.json) — accounts (evergreen link buttons) + `posts[]` (only rows with `destinationUrl`).
 
+Each account row uses **`profileImage`** (local JPEG under `assets/profiles/`) copied from the channel profile photo.
+
+```bash
+chmod +x scripts/fetch-ig-profile.sh scripts/fetch-ig-thumb.sh
+./scripts/fetch-ig-profile.sh lunarnewyeartet
+./scripts/fetch-ig-profile.sh cpalss.uplifting cpalss
+```
+
+Set `profileImage` in JSON to `/assets/profiles/{basename}.jpg`. Refresh `displayName`, `bio`, and `stats` when the channel changes.
+
 Each post row uses **`igThumb`** — a **local** JPEG under `assets/thumbs/` copied from the Instagram post (not YouTube). Instagram CDN URLs expire; always fetch and commit the image.
 
 ```bash
