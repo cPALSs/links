@@ -153,33 +153,6 @@ a:hover {
   margin-top: 0.25rem;
 }
 
-.grid-tabs {
-  display: flex;
-  justify-content: center;
-  border-top: 1px solid var(--border);
-}
-
-.grid-tab {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 64px;
-  padding: 0.85rem 0;
-  color: var(--muted);
-  border-top: 1px solid transparent;
-  margin-top: -1px;
-}
-
-.grid-tab svg {
-  width: 24px;
-  height: 24px;
-}
-
-.grid-tab--active {
-  color: var(--text);
-  border-top-color: var(--text);
-}
-
 .ig-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

@@ -3,8 +3,6 @@
 
   const CLIP_BADGE_SVG = `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.5 5.5 17.5 12 6.5 18.5V5.5Z"/></svg>`;
 
-  const GRID_TAB_SVG = `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><title>Posts</title><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>`;
-
   function escapeHtml(str) {
     return String(str)
       .replace(/&/g, "&amp;")
@@ -127,9 +125,6 @@
         </div>
       </section>
       <section class="grid-section" aria-label="Instagram posts with links">
-        <div class="grid-tabs">
-          <div class="grid-tab grid-tab--active" aria-current="page">${GRID_TAB_SVG}</div>
-        </div>
         ${renderGrid(posts)}
       </section>
     `;
