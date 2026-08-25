@@ -203,7 +203,7 @@ a:hover {
 .ig-tile {
   position: relative;
   display: block;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 319 / 425;
   background: var(--surface);
   overflow: hidden;
   text-decoration: none;

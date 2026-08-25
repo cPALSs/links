@@ -63,7 +63,7 @@
           aria-label="${escapeHtml(label || "Open link from Instagram post")}"
           title="${escapeHtml(label)}"
         >
-          <img src="${escapeHtml(thumb)}" alt="" loading="lazy" width="320" height="320" />
+          <img src="${escapeHtml(thumb)}" alt="" loading="lazy" width="319" height="425" />
           <span class="ig-tile-badge">${LINK_BADGE_SVG}</span>
         </a>`;
       })
