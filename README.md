@@ -9,7 +9,17 @@ Stable bio URLs for cPALSs and festival Instagram accounts. When a post says “
 
 ## Source of truth
 
-[`data/ig-links.json`](data/ig-links.json) — accounts (evergreen buttons) + `posts[]` (only rows with `destinationUrl`).
+[`data/ig-links.json`](data/ig-links.json) — accounts (evergreen link buttons) + `posts[]` (only rows with `destinationUrl`).
+
+Each post row uses **`igThumb`** — a **local** JPEG under `assets/thumbs/` copied from the Instagram post (not YouTube). Instagram CDN URLs expire; always fetch and commit the image.
+
+```bash
+chmod +x scripts/fetch-ig-thumb.sh
+./scripts/fetch-ig-thumb.sh https://www.instagram.com/p/SHORTCODE/ account-slug/filename.jpg
+# then set igThumb in JSON to /assets/thumbs/account-slug/filename.jpg
+```
+
+**Cross-post:** same `destinationUrl`; separate row per account with that account’s `igPermalink` and **its own** `igThumb` (re-run fetch per permalink).
 
 ## Update workflow
 
@@ -23,7 +33,7 @@ Post goes live on IG
         3. Confirm card on links.cpalss.com/{account}
 ```
 
-**Cross-post:** same `destinationUrl` / `thumb`; separate row per account with that account’s `igPermalink`.
+**Cross-post:** same `destinationUrl`; separate row per account with that account’s `igPermalink` and its own `igThumb`.
 
 Sort posts by `publishedAt` descending (handles reels posting out of order).
 
