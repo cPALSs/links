@@ -2,6 +2,7 @@
   const DATA_URL = "/data/ig-links.json";
 
   const CLIP_BADGE_SVG = `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.5 5.5 17.5 12 6.5 18.5V5.5Z"/></svg>`;
+  const EXTERNAL_LINK = 'target="_blank" rel="noopener noreferrer"';
 
   function escapeHtml(str) {
     return String(str)
@@ -48,6 +49,11 @@
     return account.username || String(account.handle || "").replace(/^@/, "");
   }
 
+  function profileInitial(account) {
+    const label = account.displayName || account.label || username(account);
+    return String(label).trim().charAt(0).toUpperCase() || "?";
+  }
+
   async function loadData() {
     const res = await fetch(DATA_URL);
     if (!res.ok) throw new Error(`Failed to load ${DATA_URL}`);
@@ -70,7 +76,7 @@
         <a
           class="ig-tile"
           href="${escapeHtml(dest)}"
-          rel="noopener noreferrer"
+          ${EXTERNAL_LINK}
           aria-label="${escapeHtml(label || "Open link from Instagram post")}"
           title="${escapeHtml(label)}"
         >
@@ -115,11 +121,11 @@
     main.innerHTML = `
       <section class="profile">
         <div class="profile-header">
-          <a class="profile-avatar-link" href="${escapeHtml(account.profileUrl)}" rel="noopener noreferrer">
+          <a class="profile-avatar-link" href="${escapeHtml(account.profileUrl)}" ${EXTERNAL_LINK}>
             ${renderAvatar(account)}
           </a>
           <div class="profile-summary">
-            <a class="profile-handle" href="${escapeHtml(account.profileUrl)}" rel="noopener noreferrer">${escapeHtml(handle)}</a>
+            <a class="profile-handle" href="${escapeHtml(account.profileUrl)}" ${EXTERNAL_LINK}>${escapeHtml(handle)}</a>
             <p class="profile-display-name">${escapeHtml(displayName)}</p>
           </div>
         </div>
