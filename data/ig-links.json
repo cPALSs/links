@@ -1,0 +1,35 @@
+{
+  "accounts": {
+    "lunarnewyeartet": {
+      "label": "Elk Grove Lunar New Year",
+      "handle": "@lunarnewyeartet",
+      "profileUrl": "https://www.instagram.com/lunarnewyeartet/",
+      "evergreen": [
+        { "label": "Festival home", "url": "https://eglny.com" },
+        { "label": "Volunteer", "url": "https://eglny.com/team/" },
+        { "label": "LNY Season calendar", "url": "https://eglny.com/resources/season/" }
+      ]
+    },
+    "cpalss": {
+      "label": "cPALSs",
+      "handle": "@cpalss.uplifting",
+      "profileUrl": "https://www.instagram.com/cpalss.uplifting/",
+      "evergreen": [
+        { "label": "cpalss.com", "url": "https://www.cpalss.com/" },
+        { "label": "Elk Grove Lunar New Year", "url": "https://eglny.com" }
+      ]
+    }
+  },
+  "posts": [
+    {
+      "account": "lunarnewyeartet",
+      "igPermalink": "https://www.instagram.com/p/Dcd9oNePtjB/",
+      "title": "Community, not just tradition",
+      "subtitle": "Full festival vision podcast",
+      "destinationUrl": "https://www.youtube.com/watch?v=Y5nmwuX66Kw",
+      "thumb": "https://i.ytimg.com/vi/Y5nmwuX66Kw/hqdefault.jpg",
+      "publishedAt": "2026-08-25",
+      "reelSlug": "02-community-not-just-tradition"
+    }
+  ]
+}
