@@ -18,6 +18,26 @@
   "posts": [
     {
       "account": "lunarnewyeartet",
+      "igPermalink": "https://www.instagram.com/p/DclDOgOSW37/",
+      "title": "A season, not competition",
+      "subtitle": "Full festival vision podcast",
+      "destinationUrl": "https://www.youtube.com/watch?v=Y5nmwuX66Kw",
+      "igThumb": "/assets/thumbs/lunarnewyeartet/03-lny-season-not-competition.jpg",
+      "publishedAt": "2026-08-28",
+      "reelSlug": "03-lny-season-not-competition"
+    },
+    {
+      "account": "cpalss",
+      "igPermalink": "https://www.instagram.com/cpalss.uplifting/reel/DclDOgOSW37/",
+      "title": "A season, not competition",
+      "subtitle": "Full festival vision podcast",
+      "destinationUrl": "https://www.youtube.com/watch?v=Y5nmwuX66Kw",
+      "igThumb": "/assets/thumbs/cpalss/03-lny-season-not-competition.jpg",
+      "publishedAt": "2026-08-28",
+      "reelSlug": "03-lny-season-not-competition"
+    },
+    {
+      "account": "lunarnewyeartet",
       "igPermalink": "https://www.instagram.com/p/DcguT4kvnSJ/",
       "title": "Themed villages & age brackets",
       "subtitle": "Full festival vision podcast",
