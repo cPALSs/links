@@ -5,17 +5,43 @@
       "displayName": "Lunar New Year Tết",
       "handle": "@lunarnewyeartet",
       "profileUrl": "https://www.instagram.com/lunarnewyeartet/",
-      "profileImage": "/assets/profiles/lunarnewyeartet.jpg"
+      "profileImage": "/assets/profiles/lunarnewyeartet.jpg",
+      "links": [
+        { "label": "Official website", "url": "https://eglny.com/" },
+        { "label": "Facebook Page", "url": "https://www.facebook.com/lunarnewyeartet" }
+      ]
     },
     "cpalss": {
       "username": "cpalss.uplifting",
       "displayName": "Community Partners Advocate of Little Saigon Sacramento",
       "handle": "@cpalss.uplifting",
       "profileUrl": "https://www.instagram.com/cpalss.uplifting/",
-      "profileImage": "/assets/profiles/cpalss.jpg"
+      "profileImage": "/assets/profiles/cpalss.jpg",
+      "links": [
+        { "label": "Official website", "url": "https://www.cpalss.com/" },
+        { "label": "Viet Youth Resources", "url": "https://youth.cpalss.com/" }
+      ]
     }
   },
   "posts": [
+    {
+      "account": "lunarnewyeartet",
+      "igPermalink": "https://www.instagram.com/cpalss.uplifting/p/Dc4gL-mAU0S/",
+      "title": "Little Saigon Krewe",
+      "subtitle": "Vietnamese Americans · local parades",
+      "destinationUrl": "https://krewe.cpalss.com",
+      "igThumb": "/assets/thumbs/lunarnewyeartet/announcing-little-saigon-krewe.jpg",
+      "publishedAt": "2026-09-04"
+    },
+    {
+      "account": "cpalss",
+      "igPermalink": "https://www.instagram.com/p/Dc4gL-mAU0S/",
+      "title": "Little Saigon Krewe",
+      "subtitle": "Vietnamese Americans · local parades",
+      "destinationUrl": "https://krewe.cpalss.com",
+      "igThumb": "/assets/thumbs/cpalss/announcing-little-saigon-krewe.jpg",
+      "publishedAt": "2026-09-04"
+    },
     {
       "account": "lunarnewyeartet",
       "igPermalink": "https://www.instagram.com/p/DclDOgOSW37/",

@@ -9,7 +9,9 @@ Stable bio URLs for cPALSs and festival Instagram accounts. When a post says “
 
 ## Source of truth
 
-[`data/ig-links.json`](data/ig-links.json) — accounts (evergreen link buttons) + `posts[]` (only rows with `destinationUrl`).
+[`data/ig-links.json`](data/ig-links.json) — accounts (`links[]` under the display name) + `posts[]` (only rows with `destinationUrl`).
+
+Instagram’s website field stays **`https://links.cpalss.com/{account}`**. Extra destinations (official site, Facebook, Viet Youth Resources) belong **below the name on this hub**, not as a rotating bio URL. Instagram’s native “and 2 more” sheet can mirror those same extra links.
 
 Each account row uses **`profileImage`** (local JPEG under `assets/profiles/`) copied from the channel profile photo.
 
@@ -19,7 +21,7 @@ chmod +x scripts/fetch-ig-profile.sh scripts/fetch-ig-thumb.sh
 ./scripts/fetch-ig-profile.sh cpalss.uplifting cpalss
 ```
 
-Set `profileImage` in JSON to `/assets/profiles/{basename}.jpg`. Refresh `displayName`, `bio`, and `stats` when the channel changes.
+Set `profileImage` in JSON to `/assets/profiles/{basename}.jpg`. Keep `links[]` in sync with Instagram’s extra bio links (label + URL).
 
 Each post row uses **`igThumb`** — a **local** JPEG under `assets/thumbs/` copied from the Instagram post (not YouTube). Instagram CDN URLs expire; always fetch and commit the image.
 

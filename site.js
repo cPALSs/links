@@ -32,10 +32,18 @@
   }
 
   function formatDestinationLabel(url) {
+    const host = formatLinkHost(url);
+    return host ? `→ ${host.split("/")[0]}` : "";
+  }
+
+  function formatLinkHost(url) {
     if (!url) return "";
     try {
-      const host = new URL(url).hostname.replace(/^www\./i, "");
-      return host ? `→ ${host}` : "";
+      const parsed = new URL(url);
+      const host = parsed.hostname.replace(/^www\./i, "");
+      const path = parsed.pathname.replace(/\/+$/, "");
+      if (path && path !== "/") return `${host}${path}`;
+      return host;
     } catch {
       return "";
     }
@@ -91,6 +99,24 @@
     return `<div class="ig-grid">${tiles}</div>`;
   }
 
+  function renderLinks(items) {
+    if (!items?.length) return "";
+    return `
+      <ul class="profile-links">
+        ${items
+          .map((item) => {
+            const host = item.host || formatLinkHost(item.url);
+            return `<li>
+              <a class="profile-link" href="${escapeHtml(item.url)}" ${EXTERNAL_LINK}>
+                <span class="profile-link-label">${escapeHtml(item.label)}</span>
+                ${host ? `<span class="profile-link-host">${escapeHtml(host)}</span>` : ""}
+              </a>
+            </li>`;
+          })
+          .join("")}
+      </ul>`;
+  }
+
   function renderAvatar(account) {
     const src = profileImage(account);
     if (src) {
@@ -127,6 +153,7 @@
           <div class="profile-summary">
             <a class="profile-handle" href="${escapeHtml(account.profileUrl)}" ${EXTERNAL_LINK}>${escapeHtml(handle)}</a>
             <p class="profile-display-name">${escapeHtml(displayName)}</p>
+            ${renderLinks(account.links)}
           </div>
         </div>
       </section>
