@@ -151,29 +151,46 @@ a:hover {
 
 .profile-links {
   list-style: none;
-  margin: 0.55rem 0 0;
+  margin: 0.65rem 0 0;
   padding: 0;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.2rem;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.75rem;
 }
 
 .profile-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.08rem;
   color: var(--link);
-  font-size: 0.92rem;
-  font-weight: 600;
-  line-height: 1.35;
+  text-align: center;
   text-decoration: none;
 }
 
 .profile-link:hover {
+  text-decoration: none;
+}
+
+.profile-link:hover .profile-link-label {
   text-decoration: underline;
+}
+
+.profile-link-label {
+  font-size: 0.92rem;
+  font-weight: 600;
+  line-height: 1.2;
 }
 
 .profile-link-host {
   color: var(--muted);
+  font-size: 0.8rem;
   font-weight: 400;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
 }
 
 .grid-section {
