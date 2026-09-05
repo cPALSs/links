@@ -108,8 +108,7 @@
             const host = item.host || formatLinkHost(item.url);
             return `<li>
               <a class="profile-link" href="${escapeHtml(item.url)}" ${EXTERNAL_LINK}>
-                <span class="profile-link-label">${escapeHtml(item.label)}</span>
-                ${host ? `<span class="profile-link-host">${escapeHtml(host)}</span>` : ""}
+                ${escapeHtml(item.label)}${host ? ` <span class="profile-link-host">(${escapeHtml(host)})</span>` : ""}
               </a>
             </li>`;
           })
