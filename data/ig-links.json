@@ -8,6 +8,7 @@
       "profileImage": "/assets/profiles/lunarnewyeartet.jpg",
       "links": [
         { "label": "Official website", "url": "https://eglny.com/" },
+        { "label": "Lion dance groups", "url": "https://eglny.com/resources/lion-dance/" },
         { "label": "Facebook Page", "url": "https://www.facebook.com/lunarnewyeartet" }
       ]
     },
@@ -24,6 +25,14 @@
     }
   },
   "posts": [
+    {
+      "account": "lunarnewyeartet",
+      "title": "Land of the Rising Lân",
+      "subtitle": "Greater Sacramento lion dance groups",
+      "destinationUrl": "https://eglny.com/resources/lion-dance/",
+      "igThumb": "/assets/thumbs/lunarnewyeartet/land-of-the-rising-lan.jpg",
+      "publishedAt": "2026-09-10"
+    },
     {
       "account": "lunarnewyeartet",
       "igPermalink": "https://www.instagram.com/p/Dc6cwuTmjql/",
