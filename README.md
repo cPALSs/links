@@ -1,11 +1,13 @@
 # links.cpalss.com — Instagram link hub
 
-Stable bio URLs for cPALSs and festival Instagram accounts. When a post says “link in bio” for an **off-platform** destination (YouTube, apply URL, etc.), add a row to the manifest and push — the hub shows featured cards without rotating the bio link itself.
+Stable bio URLs for cPALSs (and legacy festival redirect). When a **cPALSs** post needs an **off-platform** destination (YouTube, apply URL, etc.), add a row to the manifest and push — the hub shows featured cards without rotating the bio link itself.
 
 | Account path | Bio URL | IG handle |
 |--------------|---------|-----------|
-| `/lunarnewyeartet/` | https://links.cpalss.com/lunarnewyeartet | [@lunarnewyeartet](https://www.instagram.com/lunarnewyeartet/) |
 | `/cpalss/` | https://links.cpalss.com/cpalss | [@cpalss.uplifting](https://www.instagram.com/cpalss.uplifting/) |
+| `/lunarnewyeartet/` | **redirect** → [links.eglny.com](https://links.eglny.com/) | [@lunarnewyeartet](https://www.instagram.com/lunarnewyeartet/) — edit [`../eglny-links`](../eglny-links) |
+
+**EGLNY festival hub** lives at **https://links.eglny.com** ([`Operations/Sites/eglny-links`](../eglny-links)). Do not add new `@lunarnewyeartet` grid rows here.
 
 ## Source of truth
 
@@ -80,9 +82,9 @@ Then in the repo **Settings → Pages → Custom domain**: `links.cpalss.com` �
 
 Same pattern as [youth.cpalss.com](https://youth.cpalss.com) — see [youth/README.md](../youth/README.md).
 
-## Optional short URL
+## Festival account
 
-`eglny.com/ig/` → 301 to `https://links.cpalss.com/lunarnewyeartet` (verbal CTA on festival posts).
+Use [links.eglny.com](https://links.eglny.com/) / [`eglny-links`](../eglny-links). `/lunarnewyeartet/` on this host only redirects.
 
 ## Out of scope (v1)
 
