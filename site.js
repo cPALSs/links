@@ -1,5 +1,6 @@
 (() => {
   const DATA_URL = "/data/ig-links.json";
+  const ACCOUNT_ID = "cpalss";
 
   const CLIP_BADGE_SVG = `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.5 5.5 17.5 12 6.5 18.5V5.5Z"/></svg>`;
   const EXTERNAL_LINK = 'target="_blank" rel="noopener noreferrer"';
@@ -10,12 +11,6 @@
       .replace(/</g, "&lt;")
       .replace(/>/g, "&gt;")
       .replace(/"/g, "&quot;");
-  }
-
-  function accountIdFromPath() {
-    const parts = location.pathname.replace(/\/+$/, "").split("/").filter(Boolean);
-    if (parts.length === 1 && parts[0] !== "index.html") return parts[0];
-    return null;
   }
 
   function postThumb(post) {
@@ -70,7 +65,7 @@
 
   function renderGrid(posts) {
     if (!posts.length) {
-      return `<div class="ig-grid"><p class="grid-empty">Posts with extra links will show up here.</p></div>`;
+      return `<div class="ig-grid"><p class="grid-empty">Posts with links will show up here.</p></div>`;
     }
 
     const tiles = posts
@@ -124,12 +119,12 @@
     return `<div class="profile-avatar profile-avatar--initial" aria-hidden="true">${escapeHtml(profileInitial(account))}</div>`;
   }
 
-  function renderAccountPage(data, accountId) {
-    const account = data.accounts?.[accountId];
-    if (!account) throw new Error(`Unknown account: ${accountId}`);
+  function renderAccountPage(data) {
+    const account = data.accounts?.[ACCOUNT_ID];
+    if (!account) throw new Error(`Unknown account: ${ACCOUNT_ID}`);
 
     const posts = (data.posts || [])
-      .filter((p) => p.account === accountId && p.destinationUrl)
+      .filter((p) => p.account === ACCOUNT_ID && p.destinationUrl)
       .sort((a, b) => String(b.publishedAt).localeCompare(String(a.publishedAt)));
 
     const user = username(account);
@@ -162,45 +157,11 @@
     `;
   }
 
-  function renderHubPage(data) {
-    document.title = "cPALSs Links";
-    const accounts = Object.entries(data.accounts || {});
-    const main = document.getElementById("main");
-    main.innerHTML = `
-      <section class="hub-page">
-        <h1>Instagram link hub</h1>
-        <p class="muted">Pick an account. The grid matches Instagram — tap the post you recognize for its link.</p>
-        <div class="hub-list">
-          ${accounts
-            .map(([id, acct]) => {
-              const src = profileImage(acct);
-              const avatar = src
-                ? `<img class="hub-account-avatar" src="${escapeHtml(src)}" alt="" width="48" height="48" />`
-                : `<div class="hub-account-avatar">${escapeHtml(profileInitial(acct))}</div>`;
-              return `<a class="hub-account" href="/${escapeHtml(id)}/">
-                  ${avatar}
-                  <div class="hub-account-meta">
-                    <strong>${escapeHtml(username(acct))}</strong>
-                    <span>${escapeHtml(acct.handle)}</span>
-                  </div>
-                </a>`;
-            })
-            .join("")}
-        </div>
-      </section>
-    `;
-  }
-
   async function init() {
     const main = document.getElementById("main");
     try {
       const data = await loadData();
-      const accountId = accountIdFromPath();
-      if (accountId) {
-        renderAccountPage(data, accountId);
-      } else {
-        renderHubPage(data);
-      }
+      renderAccountPage(data);
     } catch (err) {
       main.innerHTML = `<p class="error-panel">${escapeHtml(err.message)}</p>`;
     }

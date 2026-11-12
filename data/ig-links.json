@@ -1,16 +1,5 @@
 {
   "accounts": {
-    "lunarnewyeartet": {
-      "username": "lunarnewyeartet",
-      "displayName": "Lunar New Year Tết",
-      "handle": "@lunarnewyeartet",
-      "profileUrl": "https://www.instagram.com/lunarnewyeartet/",
-      "profileImage": "/assets/profiles/lunarnewyeartet.jpg?v=20261027b",
-      "links": [
-        { "label": "Official website", "url": "https://eglny.com/" },
-        { "label": "Facebook Page", "url": "https://www.facebook.com/lunarnewyeartet" }
-      ]
-    },
     "cpalss": {
       "username": "cpalss.uplifting",
       "displayName": "Community Partners Advocate of Little Saigon Sacramento",
@@ -34,15 +23,6 @@
       "publishedAt": "2026-11-12"
     },
     {
-      "account": "lunarnewyeartet",
-      "igPermalink": "https://www.instagram.com/lunarnewyeartet/p/DehqNjojyJu/",
-      "title": "Vendor applications open",
-      "subtitle": "Apply on Eventeny · Round 1 Nov 5",
-      "destinationUrl": "https://eglny.com/vendors/",
-      "igThumb": "/assets/thumbs/lunarnewyeartet/vendor-applications-open.jpg",
-      "publishedAt": "2026-10-15"
-    },
-    {
       "account": "cpalss",
       "igPermalink": "https://www.instagram.com/lunarnewyeartet/p/DehqNjojyJu/",
       "title": "Vendor applications open",
@@ -50,23 +30,6 @@
       "destinationUrl": "https://eglny.com/vendors/",
       "igThumb": "/assets/thumbs/cpalss/vendor-applications-open.jpg",
       "publishedAt": "2026-10-15"
-    },
-    {
-      "account": "lunarnewyeartet",
-      "title": "Land of the Rising Lân",
-      "subtitle": "Greater Sacramento lion dance groups",
-      "destinationUrl": "https://eglny.com/resources/lion-dance/",
-      "igThumb": "/assets/thumbs/lunarnewyeartet/land-of-the-rising-lan.jpg",
-      "publishedAt": "2026-09-10"
-    },
-    {
-      "account": "lunarnewyeartet",
-      "igPermalink": "https://www.instagram.com/p/Dc6cwuTmjql/",
-      "title": "20 years of Tết",
-      "subtitle": "Hội chợ · diễn hành · park weekend",
-      "destinationUrl": "https://eglny.com/about/history/",
-      "igThumb": "/assets/thumbs/lunarnewyeartet/20-years-of-tet.jpg",
-      "publishedAt": "2026-09-05"
     },
     {
       "account": "cpalss",
@@ -78,15 +41,6 @@
       "publishedAt": "2026-09-05"
     },
     {
-      "account": "lunarnewyeartet",
-      "igPermalink": "https://www.instagram.com/cpalss.uplifting/p/Dc4gL-mAU0S/",
-      "title": "Little Saigon Krewe",
-      "subtitle": "Vietnamese Americans · local parades",
-      "destinationUrl": "https://krewe.cpalss.com",
-      "igThumb": "/assets/thumbs/lunarnewyeartet/announcing-little-saigon-krewe.jpg",
-      "publishedAt": "2026-09-04"
-    },
-    {
       "account": "cpalss",
       "igPermalink": "https://www.instagram.com/p/Dc4gL-mAU0S/",
       "title": "Little Saigon Krewe",
@@ -94,16 +48,6 @@
       "destinationUrl": "https://krewe.cpalss.com",
       "igThumb": "/assets/thumbs/cpalss/announcing-little-saigon-krewe.jpg",
       "publishedAt": "2026-09-04"
-    },
-    {
-      "account": "lunarnewyeartet",
-      "igPermalink": "https://www.instagram.com/p/DclDOgOSW37/",
-      "title": "A season, not competition",
-      "subtitle": "Full festival vision podcast",
-      "destinationUrl": "https://www.youtube.com/watch?v=Y5nmwuX66Kw",
-      "igThumb": "/assets/thumbs/lunarnewyeartet/03-lny-season-not-competition.jpg",
-      "publishedAt": "2026-08-28",
-      "reelSlug": "03-lny-season-not-competition"
     },
     {
       "account": "cpalss",
@@ -116,16 +60,6 @@
       "reelSlug": "03-lny-season-not-competition"
     },
     {
-      "account": "lunarnewyeartet",
-      "igPermalink": "https://www.instagram.com/p/DcguT4kvnSJ/",
-      "title": "Themed villages & age brackets",
-      "subtitle": "Full festival vision podcast",
-      "destinationUrl": "https://www.youtube.com/watch?v=Y5nmwuX66Kw",
-      "igThumb": "/assets/thumbs/lunarnewyeartet/01-themed-villages-age-brackets.jpg",
-      "publishedAt": "2026-08-26",
-      "reelSlug": "01-themed-villages-age-brackets"
-    },
-    {
       "account": "cpalss",
       "igPermalink": "https://www.instagram.com/cpalss.uplifting/reel/DcguT4kvnSJ/",
       "title": "Themed villages & age brackets",
@@ -134,16 +68,6 @@
       "igThumb": "/assets/thumbs/cpalss/01-themed-villages-age-brackets.jpg",
       "publishedAt": "2026-08-26",
       "reelSlug": "01-themed-villages-age-brackets"
-    },
-    {
-      "account": "lunarnewyeartet",
-      "igPermalink": "https://www.instagram.com/p/Dcd9oNePtjB/",
-      "title": "Community, not just tradition",
-      "subtitle": "Full festival vision podcast",
-      "destinationUrl": "https://www.youtube.com/watch?v=Y5nmwuX66Kw",
-      "igThumb": "/assets/thumbs/lunarnewyeartet/02-community-not-just-tradition.jpg",
-      "publishedAt": "2026-08-25",
-      "reelSlug": "02-community-not-just-tradition"
     },
     {
       "account": "cpalss",

@@ -1,25 +1,26 @@
-# links.cpalss.com — Instagram link hub
+# links.cpalss.com — cPALSs Instagram link hub
 
-Stable bio URLs for cPALSs (and legacy festival redirect). When a **cPALSs** post needs an **off-platform** destination (YouTube, apply URL, etc.), add a row to the manifest and push — the hub shows featured cards without rotating the bio link itself.
+Stable bio URL for [@cpalss.uplifting](https://www.instagram.com/cpalss.uplifting/). Instagram’s website field is **`https://links.cpalss.com`**. Evergreen destinations (cpalss.com + youth.cpalss.com) sit **below the name** on this hub. Featured post tiles go in the grid when a live post has an off-platform URL.
 
-| Account path | Bio URL | IG handle |
-|--------------|---------|-----------|
-| `/cpalss/` | https://links.cpalss.com/cpalss | [@cpalss.uplifting](https://www.instagram.com/cpalss.uplifting/) |
-| `/lunarnewyeartet/` | **redirect** → [links.eglny.com](https://links.eglny.com/) | [@lunarnewyeartet](https://www.instagram.com/lunarnewyeartet/) — edit [`../eglny-links`](../eglny-links) |
+| Item | Value |
+|------|-------|
+| Bio URL | https://links.cpalss.com |
+| Repo | [cPALSs/links](https://github.com/cPALSs/links) |
+| Edit here | `Operations/Sites/links` |
+| Manifest | [`data/ig-links.json`](data/ig-links.json) |
 
-**EGLNY festival hub** lives at **https://links.eglny.com** ([`Operations/Sites/eglny-links`](../eglny-links)). Do not add new `@lunarnewyeartet` grid rows here.
+`/cpalss/` redirects here (legacy bio path). `/lunarnewyeartet/` redirects to [links.eglny.com](https://links.eglny.com/) — edit festival rows in [`../eglny-links`](../eglny-links).
 
 ## Source of truth
 
-[`data/ig-links.json`](data/ig-links.json) — accounts (`links[]` under the display name) + `posts[]` (only rows with `destinationUrl`).
+[`data/ig-links.json`](data/ig-links.json) — account `links[]` under the display name + `posts[]` (only rows with `destinationUrl`).
 
-Instagram’s website field stays **`https://links.cpalss.com/{account}`**. Extra destinations (official site, Facebook, Viet Youth Resources) belong **below the name on this hub**, not as a rotating bio URL. Instagram’s native “and 2 more” sheet can mirror those same extra links.
+Instagram’s website field stays **`https://links.cpalss.com`**. Extra destinations belong **below the name on this hub**, not as a rotating bio URL. Instagram’s native “and 2 more” sheet can mirror those same extra links.
 
 Each account row uses **`profileImage`** (local JPEG under `assets/profiles/`) copied from the channel profile photo.
 
 ```bash
 chmod +x scripts/fetch-ig-profile.sh scripts/fetch-ig-thumb.sh
-./scripts/fetch-ig-profile.sh lunarnewyeartet
 ./scripts/fetch-ig-profile.sh cpalss.uplifting cpalss
 ```
 
@@ -29,25 +30,23 @@ Each post row uses **`igThumb`** — a **local** JPEG under `assets/thumbs/` cop
 
 ```bash
 chmod +x scripts/fetch-ig-thumb.sh
-./scripts/fetch-ig-thumb.sh https://www.instagram.com/p/SHORTCODE/ account-slug/filename.jpg
-# then set igThumb in JSON to /assets/thumbs/account-slug/filename.jpg
+./scripts/fetch-ig-thumb.sh https://www.instagram.com/p/SHORTCODE/ cpalss/filename.jpg
+# then set igThumb in JSON to /assets/thumbs/cpalss/filename.jpg
 ```
 
-**Cross-post:** same `destinationUrl`; separate row per account with that account’s `igPermalink` and **its own** `igThumb` (re-run fetch per permalink).
+**Cross-post** from `@lunarnewyeartet`: same `destinationUrl`; separate row here with the cPALSs `igPermalink` / `igThumb` / `account: "cpalss"`. Festival tiles live on [links.eglny.com](https://links.eglny.com/).
 
 ## Update workflow
 
 ```
-Post goes live on IG
-  → Caption mentions off-platform link? (link in bio, full interview, apply URL, etc.)
-    → NO: do nothing to links hub
+Post goes live on @cpalss.uplifting
+  → Caption / first comment / on-image has an off-platform URL?
     → YES:
-        1. Add row to ig-links.json (per account that posted)
-        2. git commit + push cPALSs/links
-        3. Confirm card on links.cpalss.com/{account}
+        1. Fetch thumb → assets/thumbs/cpalss/{slug}.jpg
+        2. Add row to data/ig-links.json (publishedAt DESC)
+        3. git commit + push (when Bao says deploy)
+        4. Confirm tile on https://links.cpalss.com/
 ```
-
-**Cross-post:** same `destinationUrl`; separate row per account with that account’s `igPermalink` and its own `igThumb`.
 
 Sort posts by `publishedAt` descending (handles reels posting out of order).
 
@@ -56,7 +55,7 @@ Sort posts by `publishedAt` descending (handles reels posting out of order).
 ```bash
 cd Operations/Sites/links
 python3 -m http.server 8765
-# http://localhost:8765/lunarnewyeartet/
+# http://localhost:8765/
 ```
 
 ## GitHub repo
